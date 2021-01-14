@@ -1,0 +1,61 @@
+<button (click) = handleNewBook() class='btn-warning'>Add New Book</button>
+
+<div *ngIf='resultTobeShown' class='table-responsive'>
+<form #userForm="ngForm">
+    {{userForm.value | json}}
+      <div class="row">
+      <div class="col">
+      <label>BookID</label>
+      <input type="text" class = "form-control" name="bookID" [(ngModel)] = "bookModel.bookID">
+      </div>
+      <div class="col">
+      <label>Publisher</label>
+      <input type="text" class = "form-control" name="publisher" [(ngModel)] = "bookModel.publisher">
+      </div>
+      <div class="col">
+      <label>Author</label>
+      <input type="text" class = "form-control" name="author" [(ngModel)] = "bookModel.author">
+    </div>
+    <div class="col">
+        <label>Price</label>
+        <input type="text" class = "form-control" name="price" [(ngModel)] = "bookModel.price">
+        </div>
+        <div class="col">
+        <label>Book Name</label>
+        <input type="text" class = "form-control" name="bookName" [(ngModel)] = "bookModel.bookName">
+        </div>
+        <div class="col">
+        <label>Book Category</label>
+        <input type="text" class = "form-control" name="bookCategory" [(ngModel)] = "bookModel.bookCategory">
+      </div>
+      </div>
+      <button (click) = handleAddition() class='btn-warning'>Add</button>
+  </form>
+</div>
+<br>
+<br>
+<table class='table' >
+    <thead>
+        
+  <tr>
+    <th>bookID</th>
+    <th>Publisher</th>
+    <th>Author</th>
+    <th>price</th>
+    <th>Book Name</th>
+    <th>Book Category</th>
+  </tr>
+    </thead>
+    <tbody>
+  <tr *ngFor = "let a of bookDetails">
+    <td>{{a.bookID}}</td>
+    <td contenteditable='true'>{{a.publisher}}</td>
+    <td contenteditable='true'>{{a.author}}</td>
+    <td contenteditable='true'>{{a.price}}</td>
+    <td >{{a.bookName}}</td>
+    <td contenteditable='true'>{{a.bookCategory}}</td>
+    <td><button (click) = handleEditing(a.publisher) class='btn-warning'>Edit</button></td>
+    <td><button (click) = handleDeleting(a.bookID) class='btn-warning'>Delete</button></td>
+  </tr>
+    </tbody>
+  </table>
